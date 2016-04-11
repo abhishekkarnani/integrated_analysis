@@ -1,0 +1,36 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: integrated_developement
+  username: root
+  password:
+  #host: 10.1.1.10
+  pool: 10
+  reconnect: false
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: risemoney_test
+  username: root
+  password: root
+  pool: 10
+  reconnect: false
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: puchh_db
+  username: root
+  password: root
+  pool: 11
+  reconnect: false
+
+stag2:
+  adapter: mysql2
+  encoding: utf8
+  database: puchh_db
+  username: root
+  password: root
+  pool: 11
+  reconnect: false

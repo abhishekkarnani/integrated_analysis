@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box">
+      <%= render 'search_area' %>
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Popular Properties</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table borderless">
+              <% @properties.each do |p| %>
+                <tr>
+                  <td style="border-bottom: 1px solid #eeeeee; ">
+                    <span class="glyphicon glyphicon-hand-right action-buttons"></span>
+                    <%= link_to("#{p.area} : #{p.project}, Address Line, #{p.price} lacs", property_path(p.id)) %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-9">
+        <% @properties.each do |property| %>
+          <div class="bs-callout bs-callout-warning col-md-12">
+            <div class="col-md-4">
+              <%= link_to(image_tag("/images/yes.jpg", size: "250x150"), property_path(property.id)) %>
+            </div>
+            <div class="col-md-4" >
+              <h4><%= link_to(property.project, property_path(property.id)) %></h4>
+              <p><%="#{property.area}, #{property.city}"%></p>
+              <p style="margin:0px;">1/2/3 BHK Independent Flat</p>
+              <p><%= "Price Starts @ #{property.price} lacs onward" %></p>
+              <p><span class=" btn btn-warning">
+                <%= link_to("View Contact", property_path(property.id),style: "color:#fff") %></span>
+              </p>
+            </div>
+            <div class="col-md-4 ">
+              <p class="pull-right" ><%="Call: +91-#{property.contact}"%></p>
+
+              <p class="pull-right"><span class=" btn btn-info">
+                <%= link_to("Get in Touch", "##{property.id}",:"data-toggle"=>"collapse", :"data-parent"=>"#accordion",style: "color:#fff") %></span>
+              </p>
+            </div>
+            <div class="col-md-12" id="accordion">
+              <div id=<%="#{property.id}"%> class="panel-collapse collapse">
+              <div class="panel-body">
+                <%= render 'get_in_touch' %>
+              </div>
+            </div>
+            </div>
+          </div>
+        <% end %>
+        <%= will_paginate @properties, renderer: BootstrapPagination::Rails  unless params[:search].present? %>
+      </div>
+    </div>
+  </div><!--/col-->
+
+</div><!--/row-->
